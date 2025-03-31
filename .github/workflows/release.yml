@@ -54,6 +54,5 @@ jobs:
           tag_name: ${{ github.ref }}
           name: Release ${{ github.ref }}
           generate_release_notes: true
-          draft: false
-          prerelease: false
+          append_body: true
           files: magisk-lan-auto-switch.zip
