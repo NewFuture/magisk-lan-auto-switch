@@ -42,7 +42,7 @@ jobs:
         run: |
           VERSION=$(grep '^version=' module.prop | cut -d'=' -f2)
           echo "VERSION=${VERSION}" >> $GITHUB_ENV
-          echo "::set-output name=version::${VERSION}"
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
 
       - name: Check if version has changed
         id: check_version
@@ -51,15 +51,15 @@ jobs:
           LATEST_TAG=$(git describe --tags $(git rev-list --tags --max-count=1) 2>/dev/null || echo "")
           if [ -z "$LATEST_TAG" ]; then
             echo "No previous tag found. Proceeding with release."
-            echo "::set-output name=version_changed::true"
+            echo "version_changed=true" >> $GITHUB_OUTPUT
           else
             PREVIOUS_VERSION=${LATEST_TAG#v}
             if [ "$PREVIOUS_VERSION" != "$VERSION" ]; then
               echo "Version has changed from $PREVIOUS_VERSION to $VERSION. Proceeding with release."
-              echo "::set-output name=version_changed::true"
+              echo "version_changed=true" >> $GITHUB_OUTPUT
             else
               echo "Version has not changed. Skipping release."
-              echo "::set-output name=version_changed::false"
+              echo "version_changed=false" >> $GITHUB_OUTPUT
             fi
           fi
 
