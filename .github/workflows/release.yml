@@ -11,6 +11,9 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      version_changed: ${{ steps.check_version.outputs.version_changed }}
+      version: ${{ steps.get_version.outputs.version }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -39,6 +42,7 @@ jobs:
         run: |
           VERSION=$(grep '^version=' module.prop | cut -d'=' -f2)
           echo "VERSION=${VERSION}" >> $GITHUB_ENV
+          echo "::set-output name=version::${VERSION}"
 
       - name: Check if version has changed
         id: check_version
@@ -47,22 +51,22 @@ jobs:
           LATEST_TAG=$(git describe --tags $(git rev-list --tags --max-count=1) 2>/dev/null || echo "")
           if [ -z "$LATEST_TAG" ]; then
             echo "No previous tag found. Proceeding with release."
-            echo "VERSION_CHANGED=true" >> $GITHUB_ENV
+            echo "::set-output name=version_changed::true"
           else
             PREVIOUS_VERSION=${LATEST_TAG#v}
             if [ "$PREVIOUS_VERSION" != "$VERSION" ]; then
               echo "Version has changed from $PREVIOUS_VERSION to $VERSION. Proceeding with release."
-              echo "VERSION_CHANGED=true" >> $GITHUB_ENV
+              echo "::set-output name=version_changed::true"
             else
               echo "Version has not changed. Skipping release."
-              echo "VERSION_CHANGED=false" >> $GITHUB_ENV
+              echo "::set-output name=version_changed::false"
             fi
           fi
 
   release:
     needs: build
     runs-on: ubuntu-latest
-    if: env.VERSION_CHANGED == 'true'
+    if: needs.build.outputs.version_changed == 'true'
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -78,15 +82,15 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git tag -a "v${{ env.VERSION }}" -m "Release v${{ env.VERSION }}"
-          git push origin "v${{ env.VERSION }}"
+          git tag -a "v${{ needs.build.outputs.version }}" -m "Release v${{ needs.build.outputs.version }}"
+          git push origin "v${{ needs.build.outputs.version }}"
 
       - name: Create Release
         id: create_release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: "v${{ env.VERSION }}"
-          name: Release v${{ env.VERSION }}
+          tag_name: "v${{ needs.build.outputs.version }}"
+          name: Release v${{ needs.build.outputs.version }}"
           generate_release_notes: true
           append_body: true
           files: magisk-lan-auto-switch.zip
