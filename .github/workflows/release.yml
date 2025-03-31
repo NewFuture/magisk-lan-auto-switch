@@ -25,12 +25,11 @@ jobs:
           chmod +x META-INF/com/google/android/update-binary
 
       - name: Package Magisk Module
-        run: zip -r9 magisk-lan-auto-switch.zip ./ -x ".github/*"
+        run: zip -r9 magisk-lan-auto-switch.zip ./ -x ".github/*" ".git/*"
 
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: magisk-lan-auto-switch
           path: magisk-lan-auto-switch.zip
 
   release:
