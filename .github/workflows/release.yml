@@ -17,8 +17,15 @@ jobs:
       - name: Set up zip
         run: sudo apt-get install zip
 
+      - name: Create META-INF files
+        run: |
+          mkdir -p META-INF/com/google/android
+          echo "#MAGISK" > META-INF/com/google/android/updater-script
+          wget https://raw.githubusercontent.com/topjohnwu/Magisk/refs/heads/master/scripts/module_installer.sh -O META-INF/com/google/android/update-binary
+          chmod +x META-INF/com/google/android/update-binary
+
       - name: Package Magisk Module
-        run: zip -r9 magisk-lan-auto-switch.zip ./
+        run: zip -r9 magisk-lan-auto-switch.zip ./ -x ".github/*"
 
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v2
