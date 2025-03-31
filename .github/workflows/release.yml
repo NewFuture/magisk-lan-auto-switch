@@ -28,21 +28,21 @@ jobs:
           wget https://raw.githubusercontent.com/topjohnwu/Magisk/refs/heads/master/scripts/module_installer.sh -O META-INF/com/google/android/update-binary
           chmod +x META-INF/com/google/android/update-binary
 
-      - name: Package Magisk Module
-        run: zip -r9 magisk-lan-auto-switch.zip ./ -x ".github/*" ".git/*"
-
-      - name: Upload Build Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: magisk-lan-auto-switch
-          path: magisk-lan-auto-switch.zip
-
       - name: Extract version from module.prop
         id: get_version
         run: |
           VERSION=$(grep '^version=' module.prop | cut -d'=' -f2)
           echo "VERSION=${VERSION}" >> $GITHUB_ENV
           echo "version=${VERSION}" >> $GITHUB_OUTPUT
+
+      - name: Package Magisk Module
+        run: zip -r9 magisk-lan-auto-switch-${{ steps.get_version.outputs.version }}.zip ./ -x ".github/*" ".git/*"
+
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: magisk-lan-auto-switch
+          path: magisk-lan-auto-switch-${{ steps.get_version.outputs.version }}.zip
 
       - name: Check if version has changed
         id: check_version
@@ -90,7 +90,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: "v${{ needs.build.outputs.version }}"
-          name: Release v${{ needs.build.outputs.version }}"
+          name: "Release v${{ needs.build.outputs.version }}"
           generate_release_notes: true
           append_body: true
-          files: magisk-lan-auto-switch.zip
+          files: magisk-lan-auto-switch-*.zip
