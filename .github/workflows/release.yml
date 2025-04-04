@@ -7,9 +7,6 @@ on:
     tags:
       - '*'
 
-permissions:
-  contents: write
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,23 +16,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Set up zip
-        run: sudo apt-get install zip
-
-      - name: Create META-INF files
-        run: |
-          mkdir -p META-INF/com/google/android
-          echo "#MAGISK" > META-INF/com/google/android/updater-script
-          wget https://raw.githubusercontent.com/topjohnwu/Magisk/refs/heads/master/scripts/module_installer.sh -O META-INF/com/google/android/update-binary
-          chmod +x META-INF/com/google/android/update-binary
-
-      - name: Extract version from module.prop
-        id: get_version
-        run: |
-          VERSION=$(grep '^version=' module.prop | cut -d'=' -f2)
-          echo "VERSION=${VERSION}" >> $GITHUB_ENV
-          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+        with:
+          fetch-depth: 1
 
       - name: Package Magisk Modules
         run: |
@@ -44,7 +26,13 @@ jobs:
               MODULE_NAME=$(basename "$dir")
               VERSION=$(grep '^version=' "$dir/module.prop" | cut -d'=' -f2)
               ZIP_NAME="${MODULE_NAME}-${VERSION}.zip"
-              cd "$dir" && zip -r9 "../$ZIP_NAME" . -x "README.md" && cd ..
+              cd "$dir"
+                mkdir -p META-INF/com/google/android
+                echo "#MAGISK" > META-INF/com/google/android/updater-script
+                wget https://raw.githubusercontent.com/topjohnwu/Magisk/refs/heads/master/scripts/module_installer.sh -O META-INF/com/google/android/update-binary
+                chmod +x META-INF/com/google/android/update-binary
+                zip -r9 "../$ZIP_NAME" . -x "README.md"
+              cd ..
               echo "Packaged $ZIP_NAME"
             fi
           done
@@ -54,25 +42,6 @@ jobs:
         with:
           name: magisk-modules
           path: "*.zip"
-
-      - name: Check if version has changed
-        id: check_version
-        run: |
-          git fetch --tags
-          LATEST_TAG=$(git describe --tags $(git rev-list --tags --max-count=1) 2>/dev/null || echo "")
-          if [ -z "$LATEST_TAG" ]; then
-            echo "No previous tag found. Proceeding with release."
-            echo "version_changed=true" >> $GITHUB_OUTPUT
-          else
-            PREVIOUS_VERSION=${LATEST_TAG#v}
-            if [ "$PREVIOUS_VERSION" != "$VERSION" ]; then
-              echo "Version has changed from $PREVIOUS_VERSION to $VERSION. Proceeding with release."
-              echo "version_changed=true" >> $GITHUB_OUTPUT
-            else
-              echo "Version has not changed. Skipping release."
-              echo "version_changed=false" >> $GITHUB_OUTPUT
-            fi
-          fi
 
 # release:
 #   needs: build
@@ -109,6 +78,8 @@ jobs:
   upload_artifacts:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     if: startsWith(github.ref, 'refs/tags/') # 仅在推送 tag 时触发
     steps:
       - name: Checkout code
