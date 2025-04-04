@@ -1,0 +1,4 @@
+on charger
+    setprop ro.bootmode "normal-0"
+    log -t autoboot "triggered"
+    # setprop sys.powerctl "reboot-0"
