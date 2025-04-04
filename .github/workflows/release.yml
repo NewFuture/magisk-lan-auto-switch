@@ -82,25 +82,11 @@ jobs:
       contents: write
     if: startsWith(github.ref, 'refs/tags/') # 仅在推送 tag 时触发
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
       - name: Download Build Artifact
         uses: actions/download-artifact@v4
         with:
           name: magisk-modules
           path: .
-
-      - name: Get Release ID
-        id: get_release
-        run: |
-          TAG_NAME=${GITHUB_REF#refs/tags/}
-          RELEASE_ID=$(gh api repos/${{ github.repository }}/releases | jq -r ".[] | select(.tag_name==\"$TAG_NAME\") | .id")
-          if [ -z "$RELEASE_ID" ]; then
-            echo "No release found for tag $TAG_NAME"
-            exit 1
-          fi
-          echo "RELEASE_ID=$RELEASE_ID" >> $GITHUB_ENV
 
       - name: Upload Artifacts to Release
         run: |
