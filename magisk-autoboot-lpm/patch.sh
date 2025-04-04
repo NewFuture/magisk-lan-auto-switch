@@ -1,5 +1,7 @@
 #!/system/bin/sh
 
+# ref https://github.com/anasfanani/magisk-autoboot
+
 # make sure /data/adb/magisk/util_functions.sh is sourced
 . /data/adb/magisk/util_functions.sh
 
@@ -52,11 +54,11 @@ if [ ! -z "$BOOTIMAGE" ]; then
   check_ramdisk
 
   # do patch here
-  local args="magiskboot cpio ramdisk.cpio"
+  ARGS="magiskboot cpio ramdisk.cpio"
   for arg in "$@"; do
-    args="$args \"$arg\""
+    ARGS="$ARGS \"$arg\""
   done
-  eval "$args"
+  eval "$ARGS"
 
   ui_print "- Repack boot image"
   magiskboot repack boot.img || abort "! Unable to repack boot image"
