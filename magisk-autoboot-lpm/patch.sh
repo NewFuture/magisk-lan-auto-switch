@@ -38,6 +38,8 @@ check_ramdisk() {
   esac
 }
 
+cd $MODPATH
+
 if [ ! -z "$BOOTIMAGE" ]; then
   ui_print "- Target boot image: $BOOTIMAGE"
   [ "$RECOVERYMODE" == "true" ] && ui_print "- Recovery mode is present, the script might patch recovery image..."
