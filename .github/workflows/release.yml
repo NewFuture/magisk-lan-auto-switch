@@ -91,5 +91,5 @@ jobs:
       - name: Upload Artifacts to Release
         run: |
           for file in *.zip; do
-            gh release upload $TAG_NAME "$file" --repo ${{ github.repository }} --clobber
+            gh release upload ${GITHUB_REF##*/} "$file" --repo ${{ github.repository }} --clobber
           done
