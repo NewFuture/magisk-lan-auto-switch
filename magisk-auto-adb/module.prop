@@ -1,5 +1,5 @@
-id=adb-autostart
-name=ADB Auto-Start
+id=auto-adb
+name=Auto ADB
 version=0.0.1
 versionCode=00001
 author=NewFuture

@@ -1,4 +1,4 @@
-# ADB Auto-Start Magisk Module
+# Magisk Auto ADB
 
 This Magisk module automatically starts ADB (Android Debug Bridge) after the device boots. It ensures that ADB over the network is enabled or configured based on the system's current settings.
 
