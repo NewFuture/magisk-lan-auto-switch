@@ -1,4 +1,22 @@
 on charger
-    setprop ro.bootmode "normal-0"
-    log -t autoboot "triggered"
-    # setprop sys.powerctl "reboot-0"
+    setprop ro.autoboot.charger 1
+    sleep 1
+    log -t autoboot "charger triggered"
+    # setprop ro.bootmode "norma"
+    # setprop sys.powerctl "reboot"
+    # reboot
+
+on charger && property:ro.boot.bootreason=*
+    setprop ro.autoboot.reason ${ro.boot.bootreason}
+    sleep 1
+    log -t autoboot "charger + ${ro.boot.bootreason} triggered"
+
+on property:ro.bootmode=charger
+    setprop ro.autoboot.bootmodecharger 1
+    sleep 1
+    log -t autoboot "property:ro.bootmode=charger triggered"
+
+on property:ro.bootmode=*
+    setprop ro.autoboot.bootmode= ${ro.bootmode}
+    sleep 1
+    log -t autoboot "ro.bootmode=${ro.bootmode}"
