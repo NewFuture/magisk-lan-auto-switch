@@ -3,11 +3,9 @@
 
 log -t Magisk "[fake-battery] Start"
 
-while [ "$(getprop sys.boot_completed)" != "1" ]; do
+until [ "$(getprop sys.boot_completed)" -eq 1 ]; do
     sleep 1
 done
-
-sleep 1
 
 dumpsys battery set level 100
 dumpsys battery set status 5

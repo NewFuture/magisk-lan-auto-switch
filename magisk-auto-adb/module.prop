@@ -1,0 +1,6 @@
+id=adb-autostart
+name=ADB Auto-Start
+version=0.0.1
+versionCode=00001
+author=NewFuture
+description=A Magisk module to auto-start ADB after boot

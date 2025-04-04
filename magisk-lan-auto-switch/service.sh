@@ -3,11 +3,11 @@
 log -t Magisk "[lan-auto-swith] script started:"
 
 while [ "$(getprop sys.boot_completed)" != "1" ]; do
-    sleep 5
+    sleep 2
 done
 
 # Delay execution
-sleep 25
+sleep 5
 
 # Check if eth0 is connected
 ETH0_CONNECTED=$(cat /sys/class/net/eth0/carrier 2>/dev/null)
