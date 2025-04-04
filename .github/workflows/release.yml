@@ -35,14 +35,23 @@ jobs:
           echo "VERSION=${VERSION}" >> $GITHUB_ENV
           echo "version=${VERSION}" >> $GITHUB_OUTPUT
 
-      - name: Package Magisk Module
-        run: zip -r9 magisk-lan-auto-switch-${{ steps.get_version.outputs.version }}.zip ./ -x ".github/*" ".git/*"
+      - name: Package Magisk Modules
+        run: |
+          for dir in magisk*/; do
+            if [ -d "$dir" ]; then
+              MODULE_NAME=$(basename "$dir")
+              VERSION=$(grep '^version=' "$dir/module.prop" | cut -d'=' -f2)
+              ZIP_NAME="${MODULE_NAME}-${VERSION}.zip"
+              zip -r9 "$ZIP_NAME" "$dir" -x "README.md"
+              echo "Packaged $ZIP_NAME"
+            fi
+          done
 
-      - name: Upload Build Artifact
+      - name: Upload Build Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: magisk-lan-auto-switch
-          path: magisk-lan-auto-switch-${{ steps.get_version.outputs.version }}.zip
+          name: magisk-modules
+          path: "*.zip"
 
       - name: Check if version has changed
         id: check_version
@@ -74,7 +83,7 @@ jobs:
       - name: Download Build Artifact
         uses: actions/download-artifact@v4
         with:
-          name: magisk-lan-auto-switch
+          name: magisk-modules
           path: .
 
       - name: Create Tag
@@ -93,4 +102,4 @@ jobs:
           name: "Release v${{ needs.build.outputs.version }}"
           generate_release_notes: true
           append_body: true
-          files: magisk-lan-auto-switch-*.zip
+          files: "*.zip"
