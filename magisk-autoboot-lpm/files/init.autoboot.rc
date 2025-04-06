@@ -1,3 +1,8 @@
+on early-boot
+    write /sys/class/power_supply/battery/capacity 100
+    write /sys/class/power_supply/battery/temp 25
+    write /sys/class/power_supply/battery/temp "Full"
+
 on charger && property:ro.boot.bootreason="reboot,LPM"
     # setprop ro.bootmode "normal"
     setprop sys.powerctl "reboot"
