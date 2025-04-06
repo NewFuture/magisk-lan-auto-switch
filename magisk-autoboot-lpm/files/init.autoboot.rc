@@ -1,7 +1,7 @@
-on early-boot
+on early-init
     write /sys/class/power_supply/battery/capacity 100
     write /sys/class/power_supply/battery/temp 25
-    write /sys/class/power_supply/battery/temp "Full"
+    write /sys/class/power_supply/battery/status "Full"
 
 on charger && property:ro.boot.bootreason="reboot,LPM"
     # setprop ro.bootmode "normal"
@@ -9,4 +9,3 @@ on charger && property:ro.boot.bootreason="reboot,LPM"
     # reboot
 
 #on property:ro.bootmode=charger
-#    setprop debug.autoboot.bootmodecharger 1
