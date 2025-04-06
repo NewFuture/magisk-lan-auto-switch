@@ -21,7 +21,7 @@ on property:ro.bootmode=*
     sleep 1
     log -t autoboot "ro.bootmode=${ro.bootmode}"
 
-on charger && property:ro.boot.bootreason="reboot,LPM"
+on property:ro.boot.bootreason="reboot,LPM"
     setprop ro.autoboot.lpm 1
     sleep 1
-    log -t autoboot "charger LPM triggered"
+    log -t autoboot "LPM triggered"
