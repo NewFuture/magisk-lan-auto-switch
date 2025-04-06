@@ -1,5 +1,7 @@
 #!/system/bin/sh
 
+MODPATH=${0%/*}
+
 ui_print "[fake-battery] check battery level"
 
 # Get the current fake battery level
