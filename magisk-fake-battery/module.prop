@@ -1,6 +1,6 @@
 id=fake-battery
 name=Magisk Fake Battery
-version=1.0.4
-versionCode=01004
+version=1.1.0
+versionCode=010100
 author=NewFuture
 description=Fake battery Status
