@@ -24,3 +24,4 @@ stop adbd
 start adbd
 
 log -t Magisk "[auto-adb] ADB started on port ${adb_port}"
+ui_print "[auto-adb] ADB started on port ${adb_port}"
