@@ -3,6 +3,7 @@
 ## Overview
 This Magisk module is designed to enhance the functionality of your Android device. It includes various scripts and files that allow for seamless integration and installation.
 
+⚠ **Warning:** This module modifies the boot or recovery image, and it may not be reversible. Please ensure you have the ability to reflash your device before proceeding.
 
 ## Installation
 To install this module, follow these steps:
