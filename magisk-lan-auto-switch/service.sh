@@ -7,7 +7,7 @@ while [ "$(getprop sys.boot_completed)" != "1" ]; do
 done
 
 # Delay execution
-sleep 5
+sleep 3
 
 # Check if eth0 is connected
 ETH0_CONNECTED=$(cat /sys/class/net/eth0/carrier 2>/dev/null)
@@ -19,13 +19,14 @@ if [ "$ETH0_CONNECTED" = "1" ]; then
     svc wifi disable
     settings put global wifi_on 0
     settings put global wifi_scan_always_enabled 0
-    cmd -w wifi set-wifi-enabled disabled 
+    #cmd -w wifi set-wifi-enabled disabled 
 else
     log -t Magisk "[lan-auto-swith] eth0 is not connected. Enabling WiFi."
     svc wifi enable
     settings put global wifi_on 1
     settings put global wifi_scan_always_enabled 1
-    cmd -w wifi set-wifi-enabled enabled 
+    #cmd -w wifi set-wifi-enabled enabled 
 fi
 
+# cmd wifi force-country-code enabled US
 log -t Magisk "[lan-auto-swith] script finished!"
