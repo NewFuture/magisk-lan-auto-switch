@@ -1,20 +1,22 @@
 #!/system/bin/sh
-# This script runs at boot to start ADB.
+# This script runs to start ADB
 
-# Enable ADB
-# setprop persist.adb.tcp.port 5555
+L() {
+    log -t Magisk "[auto-adb] $1"
+    ui_print "[auto-adb] $1"
+}
 
-log -t Magisk "[auto-adb] check port configuration"
+L "check persist.adb.tcp.port"
 
 
 # Check if persist.adb.tcp.port is configured
 adb_port=$(getprop persist.adb.tcp.port)
 
 if [ -z "$adb_port" ]; then
-    log -t Magisk "persist.adb.tcp.port is not configured. Setting it to 5555..."
+    L "port is not configured. Setting it to 5555..."
     adb_port="5555"
 else
-    log -t Magisk "[auto-adb] persist.adb.tcp.port is already configured as $adb_port"
+    L "port is already configured as $adb_port"
 fi
 
 # Apply the ADB port configuration
@@ -23,5 +25,4 @@ setprop service.adb.tcp.port ${adb_port}
 stop adbd
 start adbd
 
-log -t Magisk "[auto-adb] ADB started on port ${adb_port}"
-ui_print "[auto-adb] ADB started on port ${adb_port}"
+L "ADB started on port ${adb_port}"
