@@ -1,9 +1,12 @@
-on boot
-    write /sys/class/power_supply/battery/capacity 100
-    write /sys/class/power_supply/battery/temp 25
-    write /sys/class/power_supply/battery/status "Full"
 
-on charger && property:ro.boot.bootreason="reboot,lpm"
+on charger && property:ro.boot.bootreason="reboot,lpm" && property:ro.bootmode="unkown"
     setprop ro.bootmode "normal"
+    sleep 1
     setprop sys.powerctl "reboot"
+    sleep 2
     reboot
+
+on charger && property:ro.boot.bootreason="reboot" && property:ro.bootmode="unkown"
+    setprop ro.bootmode "normal"
+    sleep 1
+    setprop sys.powerctl "reboot"
