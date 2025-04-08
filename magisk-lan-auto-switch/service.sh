@@ -7,7 +7,7 @@ while [ "$(getprop sys.boot_completed)" != "1" ]; do
 done
 
 # Delay execution
-sleep 3
+sleep 5
 
 . $MODPATH/service.sh
 
