@@ -1,0 +1,4 @@
+# Override country code to CN
+ro.product.locale.region=CN
+persist.sys.country=CN
+ro.config.hw_country=CN

@@ -1,0 +1,6 @@
+id=override-country-code
+name=Override Country Code
+version=v0.0.1
+versionCode=00001
+author=NewFuture
+description=This Magisk module overrides the device country code to CN.
