@@ -40,7 +40,6 @@ check_ramdisk() {
 
 if [ ! -z "$BOOTIMAGE" ]; then
   cd $MODPATH
-  cat $BOOTIMAGE > backup_boot.img
   ui_print "- Target boot image: $BOOTIMAGE"
   [ "$RECOVERYMODE" == "true" ] && ui_print "- Recovery mode is present, the script might patch recovery image..."
   if [ -c "$BOOTIMAGE" ]; then
