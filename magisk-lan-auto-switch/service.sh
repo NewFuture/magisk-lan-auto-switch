@@ -1,5 +1,7 @@
 #!/system/bin/sh
 
+MODPATH=${0%/*}
+
 log -t Magisk "[lan-auto-swith] script started:"
 
 while [ "$(getprop sys.boot_completed)" != "1" ]; do
@@ -7,9 +9,8 @@ while [ "$(getprop sys.boot_completed)" != "1" ]; do
 done
 
 # Delay execution
-sleep 5
+sleep 3
 
 . $MODPATH/service.sh
 
-# cmd wifi force-country-code enabled US
 log -t Magisk "[lan-auto-swith] script finished!"
