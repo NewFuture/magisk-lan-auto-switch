@@ -2,8 +2,8 @@
 
 
 L() {
-log -t Magisk "[lan-auto-swith] $1"
-ui_print "[lan-auto-swith] $1"
+    echo "[lan-auto-swith] $1"
+    log -t Magisk "[lan-auto-swith] $1"
 }
 
 
@@ -22,4 +22,4 @@ else
     cmd -w wifi set-wifi-enabled enabled 
 fi
 
-L "done!"
+L "Done!"

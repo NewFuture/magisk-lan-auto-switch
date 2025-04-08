@@ -2,8 +2,8 @@
 # This script runs to start ADB
 
 L() {
+    echo "[auto-adb] $1"
     log -t Magisk "[auto-adb] $1"
-    ui_print "[auto-adb] $1"
 }
 
 L "check persist.adb.tcp.port"
