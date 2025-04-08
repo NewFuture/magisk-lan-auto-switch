@@ -1,12 +1,11 @@
 #!/system/bin/sh
 # This script runs at boot to start ADB.
 
-log -t Magisk "[auto-adb] script started:"
+MODPATH=${0%/*}
 
-until [ "$(getprop sys.boot_completed)" -eq 1 ]; do
-    sleep 5
-done
+log -t Magisk "[auto-adb] Start:"
 
-sleep 5
-
+sleep 10
 . $MODPATH/action.sh
+
+log -t Magisk "[auto-adb] Done!"
