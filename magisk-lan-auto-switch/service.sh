@@ -9,8 +9,8 @@ while [ "$(getprop sys.boot_completed)" != "1" ]; do
 done
 
 # Delay execution
-sleep 3
+sleep 1
 
-. $MODPATH/service.sh
+. $MODPATH/action.sh
 
 log -t Magisk "[lan-auto-swith] script finished!"

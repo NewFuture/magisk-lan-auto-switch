@@ -5,7 +5,7 @@ MODPATH=${0%/*}
 
 log -t Magisk "[auto-adb] Start:"
 
-sleep 10
+sleep 20
 . $MODPATH/action.sh
 
 log -t Magisk "[auto-adb] Done!"

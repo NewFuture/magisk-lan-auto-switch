@@ -1,6 +1,6 @@
 id=lan-auto-switch
 name=LAN Auto Switch
-version=v1.3.4
-versionCode=10304
+version=v1.3.5
+versionCode=10305
 author=NewFuture
 description=Automatically switch LAN and WiFi based on eth0 connection status.
