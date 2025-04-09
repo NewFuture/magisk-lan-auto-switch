@@ -3,9 +3,13 @@
 
 MODPATH=${0%/*}
 
-log -t Magisk "[auto-adb] Start:"
+log -t Magisk "[auto-adb] script started:"
 
-sleep 20
+until [ "$(getprop sys.boot_completed)" -eq 1 ]; do
+    sleep 1
+done
+
+sleep 2
 . $MODPATH/action.sh
 
-log -t Magisk "[auto-adb] Done!"
+log -t Magisk "[auto-adb] script finished!"

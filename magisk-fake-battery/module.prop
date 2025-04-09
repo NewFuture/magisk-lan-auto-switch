@@ -1,6 +1,6 @@
 id=fake-battery
 name=Fake Battery
-version=v1.1.3
-versionCode=010103
+version=v1.1.4
+versionCode=10104
 author=NewFuture
 description=Magisk module mocks a full status battery

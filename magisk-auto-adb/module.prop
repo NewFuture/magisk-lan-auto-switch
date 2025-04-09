@@ -1,6 +1,6 @@
 id=auto-adb
 name=Auto ADB
-version=v1.0.0
+version=v1.0.1
 versionCode=10000
 author=NewFuture
 description=A Magisk module to start ADB after boot
