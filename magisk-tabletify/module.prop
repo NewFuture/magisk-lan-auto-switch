@@ -1,6 +1,6 @@
 id=tabletify
 name=Tabletify
-version=v0.0.1
-versionCode=00001
+version=v0.1.0
+versionCode=01000
 author=NewFuture
 description=Transform your Android device into a tablet by changing system properties, DPI, screen size, and layout behavior.
