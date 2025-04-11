@@ -19,10 +19,17 @@ else
     L "port is already configured as $adb_port"
 fi
 
+if [ "$(getprop init.svc.adbd)" = "running" ]; then
+    L "ADB is running. Stop ADB."
+    stop adbd
+fi
+
 # Apply the ADB port configuration
 setprop service.adb.tcp.port ${adb_port}
+settings put global adb_enabled 1
+settings put global adb_wifi_enabled 1
+
 # Restart ADB to apply changes
-stop adbd
 start adbd
 
 L "ADB started on port ${adb_port}"
