@@ -1,7 +1,7 @@
 id=autoboot-lpm
 name=Auto Boot on Charger in LPM
-version=v0.2.0
-versionCode=00200
+version=v0.2.1
+versionCode=00201
 author=NewFuture
 description=Automatically boots device when charger is connected and boot.reason is lpm.
 changeBoot=true
