@@ -6,3 +6,4 @@ ro.product.system.model: SM-T860
 ro.sf.lcd_density=240
 ro.sf.init.lcd_density
 ro.sf.hwrotation=270
+ro.camerax.extensions.enabled=false
