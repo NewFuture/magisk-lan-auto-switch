@@ -1,5 +1,17 @@
 on charger && property:ro.boot.bootreason="reboot,lpm" && property:ro.bootmode="unkown"
   setprop sys.boot_from_charger_mode 1
+  setprop ro.bootmode "normal"
+  setprop sys.powerctl "reboot"
+  #reboot
 
 on charger && property:ro.boot.bootreason="reboot" && property:ro.bootmode="unkown"
+  setprop sys.boot_from_charger_mode 1
+  setprop ro.bootmode "normal"
+
+on property:ro.boot.bootreason="reboot,lpm" && property:ro.bootmode="charger"
+  setprop ro.bootmode "normal"
+  setprop sys.boot_from_charger_mode 1
+
+on property:ro.boot.bootreason="reboot" && property:ro.bootmode="charger"
+  setprop ro.bootmode "normal"
   setprop sys.boot_from_charger_mode 1

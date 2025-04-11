@@ -1,0 +1,6 @@
+ro.build.characteristics=tablet
+ro.product.device=tablet
+ro.product.model=SM-T860
+ro.product.name=ABox
+ro.product.manufacturer=Samsung
+ro.sf.lcd_density=240
