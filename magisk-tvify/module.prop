@@ -1,0 +1,6 @@
+id=tvify
+name=Android TVify
+version=v0.0.1
+versionCode=00001
+author=NewFuture
+description=Transforms your Android device into an Android TV by modifying system properties, DPI, and layout behavior.
