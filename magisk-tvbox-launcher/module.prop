@@ -1,0 +1,6 @@
+id=tvbox-launcher
+name=TVBox Launcher
+version=v0.0.1
+versionCode=00001
+author=NewFuture
+description=Automatically launches the TVBox app with package name containing '.tvbox.osc' after boot.
