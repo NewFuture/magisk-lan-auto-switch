@@ -12,11 +12,8 @@ L "script started:"
 
 # Wait for the system to boot completely
 until [ "$(getprop sys.boot_completed)" -eq 1 ]; do
-    sleep 1
+    sleep 2
 done
-
-# Delay to ensure the system is ready
-sleep 3
 
 # Find the package name containing '.tvbox.osc'
 PACKAGE_NAME=$(pm list packages | grep '\.tvbox\.osc' | cut -d':' -f2)
