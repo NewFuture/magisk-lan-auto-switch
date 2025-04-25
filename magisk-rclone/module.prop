@@ -1,0 +1,6 @@
+id=rclone
+name=RClone
+version=v0.0.1
+versionCode=00001
+author=NewFuture
+description=Magisk module to manage rclone mounts automatically on boot and during operation.
