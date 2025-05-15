@@ -1,0 +1,7 @@
+#!/system/bin/sh
+
+set -e
+
+CONFIG_FILE="${MODPATH:-/data/adb/modules/ddns-go}/config.yaml"
+
+ddns-go -c "$CONFIG_FILE" -dns 223.5.5.5
