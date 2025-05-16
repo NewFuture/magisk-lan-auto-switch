@@ -1,20 +1,17 @@
 #!/system/bin/sh
-
-LOG_FILE="$TMPDIR/ddns-go.log"
-PID_FILE="$TMPDIR/ddns-go.pid"
+set -a && . "${MODPATH:-/data/adb/modules/ddns-go}/env" && set +a
 
 
-if [ -f "$PID_FILE" ]; then
-    PID=$(cat "$PID_FILE")
+if [ -f "$DDNS_PID_FILE" ]; then
+    echo "dns is running"
+    PID=$(cat "$DDNS_PID_FILE")
     echo "kill $PID"
-    pkill -P $PID
-    echo "ddns-go is stopped (PID: $PID)"
-    rm -f $PID_FILE
-    rm -f $LOG_FILE
+    pkill -P $PID & echo "ddns-go is stopped (PID: $PID)"
+    rm -f "$DDNS_PID_FILE"
+    rm -f "$DDNS_LOG_FILE"
 else
-    echo "ddns-go is not running"
     echo "Starting ddns-go..."
-    ddns >> "$LOG_FILE" 2>&1 &
-    echo $! > "$PID_FILE"
+    ddns-go -dns 223.5.5.5 >> "$DDNS_LOG_FILE" 2>&1 &
+    echo $! > "$DDNS_PID_FILE"
     echo "ddns-go started (PID: $!)"
 fi
