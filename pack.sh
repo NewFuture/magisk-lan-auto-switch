@@ -1,3 +1,5 @@
+#!/bin/bash
+
 for dir in magisk*/; do
     if [ -d "$dir" ]; then
         MODULE_NAME=$(basename "$dir")
