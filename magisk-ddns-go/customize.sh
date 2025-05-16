@@ -18,7 +18,6 @@ curl -L -o ddns-go.tar.gz $DOWNLOAD_URL
 tar -xzf ddns-go.tar.gz -C $MODPATH/system/vendor/bin -z ddns-go
 rm -f ddns-go.tar.gz
 
-set_perm_recursive $MODPATH 0 0 0755 0600
 chmod +x $MODPATH/system/vendor/bin/*
 set_perm_recursive $MODPATH/system/vendor/bin/ 0 0 0755
 

@@ -10,9 +10,10 @@ Automatically switches between LAN and WiFi based on the connection status of `e
 - Enables WiFi when `eth0` is disconnected.
 
 ### [Magisk Fake Battery](./magisk-fake-battery/README.md)
-Fakes battery status, suitable for devices without a battery.  
+Simulates battery status, suitable for devices without a battery.  
 - Sets battery level to 100%.
 - Mocks charging status and temperature.
+- Helps bypass battery checks in the system and some apps.
 
 ### [Magisk Auto ADB](./magisk-auto-adb/README.md)
 Automatically starts ADB (Android Debug Bridge) after the device boots.  
@@ -20,7 +21,7 @@ Automatically starts ADB (Android Debug Bridge) after the device boots.
 - Restarts ADB service to apply the configuration.
 
 ### [Magisk Auto Boot on Charger in LPM](./magisk-autoboot-lpm/README.md)
-**NOT Recommended**.  
+**NOT Recommended (May be irreversible)**  
 Automatically boots the device when a charger is connected in low-power mode without a battery.  
 - Modifies boot behavior to bypass low-power mode.
 
@@ -34,16 +35,27 @@ Transforms your Android device into tablet mode by modifying system properties.
 - Adjusts screen rotation to 270 degrees.
 - Sets device model to `SM-T860` (Samsung tablet).
 
+### [Magisk DDNS Go](./magisk-ddns-go/README.md)
+Integrates ddns-go for dynamic DNS updates.  
+- Runs ddns-go as a background service.
+- Supports custom configuration via `config.yaml`.
+- Useful for devices with changing public IP addresses.
+
 ## Installation
+
 1. Go to the [Release Page](https://github.com/NewFuture/magisk-modules/releases) to download the desired module's zip file.
 2. In Magisk Manager, select the "Modules" tab, click "Install Module," and choose the downloaded zip file.
 3. Reboot the device to apply the module.
 
 ## Contribution
+
 If you have any suggestions or improvements, feel free to submit an Issue or Pull Request.
 
 ## License
+
 This project is licensed under the MIT License. For more details, please refer to the [LICENSE](LICENSE) file.
+
+---
 
 # Magisk 模块
 
@@ -60,6 +72,7 @@ This project is licensed under the MIT License. For more details, please refer t
 伪造电池状态，适用于移除电池的设备。  
 - 设置电池电量为 100%。
 - 模拟充电状态和温度。
+- 可绕过系统和部分应用的电池检测。
 
 ### [Magisk Auto ADB](./magisk-auto-adb/README.md)
 在设备启动后自动启动 ADB（Android Debug Bridge）。  
@@ -67,7 +80,7 @@ This project is licensed under the MIT License. For more details, please refer t
 - 重启 ADB 服务以应用配置。
 
 ### [Magisk Auto Boot on Charger in LPM](./magisk-autoboot-lpm/README.md)
-**不推荐(可能无法恢复)**  
+**不推荐（可能无法恢复）**  
 在无电池触发低功耗模式下，连接充电器时自动启动设备。  
 - 修改启动行为以绕过低功耗模式。
 
@@ -81,13 +94,22 @@ This project is licensed under the MIT License. For more details, please refer t
 - 调整屏幕旋转为 270 度。
 - 设置设备型号为 `SM-T860`（三星平板）。
 
+### [Magisk DDNS Go](./magisk-ddns-go/README.md)
+集成 ddns-go 实现动态域名解析。  
+- 作为后台服务运行 ddns-go。
+- 支持通过 `config.yaml` 自定义配置。
+- 适用于公网 IP 变化的设备。
+
 ## 安装
+
 1. 前往 [Release 页面](https://github.com/NewFuture/magisk-modules/releases) 下载所需模块的压缩包。
 2. 在 Magisk Manager 中选择“模块”选项卡，点击“安装模块”，并选择下载的压缩包。
 3. 重启设备以应用模块。
 
 ## 贡献
+
 如果您有任何建议或改进，请随时提交 Issue 或 Pull Request。
 
 ## 许可证
+
 此项目基于 MIT 许可证授权。有关详细信息，请参阅 [LICENSE](LICENSE) 文件。
