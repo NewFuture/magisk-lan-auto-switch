@@ -9,6 +9,8 @@ if [ -f "$PID_FILE" ]; then
     echo "kill $PID"
     pkill -P $PID
     echo "ddns-go is stopped (PID: $PID)"
+    rm -f $PID_FILE
+    rm -f $LOG_FILE
 else
     echo "ddns-go is not running"
     echo "Starting ddns-go..."

@@ -4,4 +4,4 @@ version=v1.3.5
 versionCode=10305
 author=NewFuture
 description=Automatically switch LAN and WiFi based on eth0 connection status.
-updateJson=https://github.com/NewFuture/rclone-fuse3-magisk/releases/latest/download/lan-auto-switch.update.json
+updateJson=https://github.com/NewFuture/magisk-modules/releases/latest/download/magisk-lan-auto-switch.update.json

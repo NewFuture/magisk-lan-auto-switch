@@ -4,4 +4,4 @@ version=v1.0.0
 versionCode=10000
 author=NewFuture
 description=Transform your Android device into a tablet by changing system properties, DPI, screen size, and layout behavior.
-updateJson=https://github.com/NewFuture/rclone-fuse3-magisk/releases/latest/download/tabletify.update.json
+updateJson=https://github.com/NewFuture/magisk-modules/releases/latest/download/magisk-tabletify.update.json

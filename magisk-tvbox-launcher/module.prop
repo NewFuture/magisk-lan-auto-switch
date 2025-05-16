@@ -4,4 +4,4 @@ version=v1.0.0
 versionCode=10000
 author=NewFuture
 description=Automatically launches the TVBox app with package name containing '.tvbox.osc' after boot.
-updateJson=https://github.com/NewFuture/rclone-fuse3-magisk/releases/latest/download/tvbox-launcher.update.json
+updateJson=https://github.com/NewFuture/magisk-modules/releases/latest/download/magisk-tvbox-launcher.update.json
