@@ -12,12 +12,12 @@ for dir in magisk*/; do
         wget https://raw.githubusercontent.com/topjohnwu/Magisk/refs/heads/master/scripts/module_installer.sh -O META-INF/com/google/android/update-binary
         chmod +x META-INF/com/google/android/update-binary
         zip -r9 "../$ZIP_NAME" . -x "README.md"
-cat <<EOF > ../$MODULE_NAME.update.json
+        cat <<EOF > ../$MODULE_NAME.update.json
 {
   "version": "$VERSION",
   "versionCode": $VERSION_CODE,
   "zipUrl": "https://github.com/NewFuture/magisk-modules/releases/latest/download/$ZIP_NAME",
-  "changelog": "https://github.com/NewFuture/magisk-modules/releases/latest",
+  "changelog": "https://api.github.com/repos/NewFuture/magisk-modules/releases/latest",
   "minMagisk": "24.0"
 }
 EOF

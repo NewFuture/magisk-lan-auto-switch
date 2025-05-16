@@ -16,8 +16,10 @@ until [ "$(getprop init.svc.bootanim)" = "stopped" ]; do
 done
 sleep 30
 
-L "run ddns ..."
-ddns-go -dns 223.5.5.5 >> "$DDNS_LOG_FILE" 2>&1 &
+L "run ddns in low priority"
+
+nice -n 18 ionice -c3 ddns-go -dns 223.5.5.5 >> "$DDNS_LOG_FILE" 2>&1 &
+
 echo $! > "$DDNS_PID_FILE"
 
-L "script finished (ddns PID: $!)"
+L "script finished (PID: $!)"
