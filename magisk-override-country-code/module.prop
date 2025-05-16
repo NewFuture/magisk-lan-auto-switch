@@ -1,6 +1,7 @@
 id=override-country-code
 name=Override Country Code
-version=v0.0.1
-versionCode=00001
+version=v1.0.0
+versionCode=10000
 author=NewFuture
 description=This Magisk module overrides the device country code to CN.
+updateJson=https://github.com/NewFuture/rclone-fuse3-magisk/releases/latest/download/override-country-code.update.json

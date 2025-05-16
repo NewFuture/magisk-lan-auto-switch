@@ -5,3 +5,4 @@ versionCode=10000
 author=NewFuture
 description=Automatically boots device when charger is connected and boot.reason is lpm.
 changeBoot=true
+updateJson=https://github.com/NewFuture/rclone-fuse3-magisk/releases/latest/download/autoboot-lpm.update.json

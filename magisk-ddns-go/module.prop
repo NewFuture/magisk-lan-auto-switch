@@ -1,6 +1,7 @@
-id=ddns
+id=ddns-go
 name=DDNS Go
-version=v0.0.1
-versionCode=001
+version=v1.0.0
+versionCode=10000
 author=NewFuture
 description=Magisk module mocks for DDNS
+updateJson=https://github.com/NewFuture/rclone-fuse3-magisk/releases/latest/download/ddns-go.update.json
