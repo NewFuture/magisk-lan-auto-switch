@@ -1,0 +1,31 @@
+#!/system/bin/sh
+
+set -e
+set -a && . "/data/adb/modules/ddns-go/env" && set +a
+
+if [ -f "$DDNS_PID_FILE" ]; then
+    echo "dns is running"
+    PID=$(cat "$DDNS_PID_FILE")
+    echo "kill $PID"
+    pkill -P $PID & echo "ddns-go is stopped (PID: $PID)"
+    rm -f "$DDNS_PID_FILE"
+    rm -f "$DDNS_LOG_FILE"
+fi
+
+# get latest from https://github.com/jeessy2/ddns-go/releases/latest/
+DOWNLOAD_URL=$(curl -s https://api.github.com/repos/jeessy2/ddns-go/releases/latest | grep -o 'https:.*android_arm64.*tar.gz')
+if [ -z "$DOWNLOAD_URL" ]; then
+    echo "Failed to get the latest url."
+    exit 1
+else
+    echo "Latest version url: $DOWNLOAD_URL"
+fi
+
+# download ddns-go
+DOWNLOAD_FILE="${TMPDIR:-/data/local/tmp}/ddns-go.tar.gz"
+curl -L -o "$DOWNLOAD_FILE" "$DOWNLOAD_URL"
+# only extract ddns-go binary
+tar -xzf "$DOWNLOAD_FILE" -C $MODPATH/system/vendor/bin -z ddns-go
+rm -f "$DOWNLOAD_FILE"
+
+echo "upgraded ddns-go to $DOWNLOAD_URL"
