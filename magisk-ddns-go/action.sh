@@ -7,7 +7,7 @@ PID_FILE="$TMPDIR/ddns-go.pid"
 if [ -f "$PID_FILE" ]; then
     PID=$(cat "$PID_FILE")
     echo "kill $PID"
-    kill $PID
+    pkill -P $PID
     echo "ddns-go is stopped (PID: $PID)"
 else
     echo "ddns-go is not running"
