@@ -16,8 +16,8 @@ cat <<EOF > ../$MODULE_NAME.update.json
 {
   "version": "$VERSION",
   "versionCode": $VERSION_CODE,
-  "zipUrl": "https://github.com/NewFuture/magisk-modules/releases/download/latest/$ZIP_NAME",
-  "changelog": "",
+  "zipUrl": "https://github.com/NewFuture/magisk-modules/releases/latest/download/$ZIP_NAME",
+  "changelog": "https://github.com/NewFuture/magisk-modules/releases/latest",
   "minMagisk": "24.0"
 }
 EOF
