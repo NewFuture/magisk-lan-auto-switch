@@ -19,7 +19,7 @@ tar -xzf ddns-go.tar.gz -C $MODPATH/system/vendor/bin -z ddns-go
 rm -f ddns-go.tar.gz
 
 chmod +x $MODPATH/system/vendor/bin/*
-set_perm_recursive $MODPATH/system/vendor/bin/ 0 0 0755
+set_perm_recursive $MODPATH/system/vendor/bin/ 0 0 0755 0755
 
 if [ -f "$OLD_CONFIG_FILE" ]; then
     echo "Found old config file at $OLD_CONFIG_FILE. Moving to new location."
