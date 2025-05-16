@@ -3,7 +3,7 @@
 OLD_CONFIG_FILE="/data/adb/modules/ddns-go/config.yaml"
 
 # get latest from https://github.com/jeessy2/ddns-go/releases/latest/
-DOWNLOAD_URL=$(curl -s https://api.github.com/repos/jeessy2/ddns-go/releases/latest | grep -oP '"browser_download_url": "\Khttps.*android_arm64.tar.gz(?=")')
+DOWNLOAD_URL=$(curl -s https://api.github.com/repos/jeessy2/ddns-go/releases/latest | grep -o 'https:.*android_arm64.*tar.gz')
 if [ -z "$DOWNLOAD_URL" ]; then
     echo "Failed to get the latest url."
     exit 1
