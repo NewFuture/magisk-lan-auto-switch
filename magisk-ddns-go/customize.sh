@@ -27,4 +27,5 @@ if [ -f "$OLD_CONFIG_FILE" ]; then
     echo "COPY config file to $MODPATH"
 else
     echo "No old config file found at $OLD_CONFIG_FILE."
+    touch "$MODPATH/config.yaml"
 fi
