@@ -8,7 +8,6 @@ L "script started"
 
 set -a && . "${MODPATH:-/data/adb/modules/ddns-go}/env" && set +a
 
-rm -f "$DDNS_LOG_FILE"
 rm -f "$DDNS_PID_FILE"
 
 until [ "$(getprop init.svc.bootanim)" = "stopped" ]; do 
@@ -18,7 +17,7 @@ sleep 30
 
 L "run ddns in low priority"
 
-nice -n 18 ionice -c3 ddns-go -dns 223.5.5.5 >> "$DDNS_LOG_FILE" 2>&1 &
+nice -n 18 ionice -c3 ddns-go > "$DDNS_LOG_FILE" 2>&1 &
 
 echo $! > "$DDNS_PID_FILE"
 
