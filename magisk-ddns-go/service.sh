@@ -19,7 +19,7 @@ DDNS_GO_ARGS=("-dns" "$DDNS_DNS")
 if [ -n "$DDNS_IP_CACHE_TIMES" ] ; then
     DDNS_GO_ARGS+=("-cacheTimes" "$DDNS_IP_CACHE_TIMES")
 fi
-if [ -n $"DDNS_FREQUENCY"] ; then
+if [ -n $"DDNS_FREQUENCY" ] ; then
     DDNS_GO_ARGS+=("-f" "$DDNS_FREQUENCY")
 fi
 
