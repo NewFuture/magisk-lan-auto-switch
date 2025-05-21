@@ -10,6 +10,21 @@ until [ "$(getprop sys.boot_completed)" -eq 1 ]; do
 done
 
 sleep 2
-. $MODPATH/action.sh
+
+adb_port=$(getprop persist.adb.tcp.port)
+if [ -z "$adb_port" ]; then
+    L "persist.adb.tcp.port is not configured."
+else
+    # Apply the ADB port configuration
+    setprop service.adb.tcp.port ${adb_port}
+else
+
+settings put global adb_enabled 1
+settings put global adb_wifi_enabled 1
+    
+if [ "$(getprop init.svc.adbd)" != "running" ]; then
+    # Restart ADB to apply changes
+    start adbd
+fi
 
 log -t Magisk "[auto-adb] script finished!"

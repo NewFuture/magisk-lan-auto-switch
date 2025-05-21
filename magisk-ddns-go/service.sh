@@ -15,12 +15,12 @@ until [ "$(getprop init.svc.bootanim)" = "stopped" ]; do
 done
 sleep 30
 
-DDNS_GO_ARGS=('-dns',"$DDNS_DNS")
+DDNS_GO_ARGS=("-dns" "$DDNS_DNS")
 if [ -n "$DDNS_IP_CACHE_TIMES" ] ; then
-  DDNS_GO_ARGS+=('-cacheTimes', "$DDNS_IP_CACHE_TIMES")
+    DDNS_GO_ARGS+=("-cacheTimes" "$DDNS_IP_CACHE_TIMES")
 fi
 if [ -n $"DDNS_FREQUENCY"] ; then
-  DDNS_GO_ARGS+=('-f', "$DDNS_FREQUENCY")
+    DDNS_GO_ARGS+=("-f" "$DDNS_FREQUENCY")
 fi
 
 L "run ddns in low priority: ${DDNS_GO_ARGS[@]}"
