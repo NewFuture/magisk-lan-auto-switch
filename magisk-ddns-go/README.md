@@ -18,14 +18,14 @@ This Magisk module integrates ddns-go to provide Dynamic DNS (DDNS) functionalit
 
 - The configuration file is located at `config.yaml` in the module directory. 
 - The service startup script is [`server.sh`](server.sh), and you can check logs for status.
-- The binary is installed at `system/vendor/bin/ddns` and runs ddns-go.
+- The binary is installed at `/vendor/bin/ddns` and runs ddns-go.
 
 ## Logs
 
 To view ddns-go logs:
 
 ```sh
-cat /dev/tmp/ddns-go.log
+cat /data/log/ddns-go.log
 ```
 
 Or use logcat to view module logs:
@@ -62,14 +62,14 @@ logcat -s Magisk
 
 - 配置文件位于模块目录下的 `config.yaml`
 - 服务启动脚本为 [`server.sh`](server.sh)，可通过日志查看运行状态。
-- 二进制文件安装在 `system/vendor/bin/ddns`，实际运行时调用 ddns-go。
+- 二进制文件安装在 `/vendor/bin/ddns`，实际运行时调用 ddns-go。
 
 ## 日志查看
 
 可通过如下命令查看 ddns-go 日志：
 
 ```sh
-cat /dev/tmp/ddns-go.log
+cat /data/log/ddns-go.log
 ```
 
 或使用 logcat 查看模块日志：

@@ -1,7 +1,7 @@
 id=ddns-go
 name=DDNS-Go
-version=v1.0.7
-versionCode=10007
+version=v1.1.0
+versionCode=10100
 author=NewFuture
 description=Run DDNS-go service in Magisk
 updateJson=https://github.com/NewFuture/magisk-modules/releases/latest/download/magisk-ddns-go.update.json

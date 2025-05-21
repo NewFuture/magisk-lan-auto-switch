@@ -3,6 +3,8 @@
 set -e
 set -a && . "/data/adb/modules/ddns-go/env" && set +a
 
+DDNS_PID_FILE=/data/log/ddns-go.pid
+
 if [ -f "$DDNS_PID_FILE" ]; then
     echo "dns is running"
     PID=$(cat "$DDNS_PID_FILE")

@@ -1,4 +1,29 @@
 #!/system/bin/sh
 set -e
 set -a && . "/data/adb/modules/ddns-go/env" && set +a
-ddns-go "$@"
+
+DDNS_GO_ARGS=()
+if [ -n "$DDNS_CONFIG_FILE_PATH" ] ; then
+    DDNS_GO_ARGS+=("-c" "$DDNS_CONFIG_FILE_PATH")
+fi
+if [ -n "$DDNS_FREQUENCY" ] ; then
+    DDNS_GO_ARGS+=("-f" "$DDNS_FREQUENCY")
+fi
+if [ -n "$DDNS_LISTEN" ] ; then
+    DDNS_GO_ARGS+=("-l" "$DDNS_LISTEN")
+fi
+if [ -n "$DDNS_IP_CACHE_TIMES" ] ; then
+    DDNS_GO_ARGS+=("-cacheTimes" "$DDNS_IP_CACHE_TIMES")
+fi
+if [ -n "$DDNS_DNS" ] ; then
+    DDNS_GO_ARGS+=("-dns" "$DDNS_DNS")
+fi
+
+if [ -n "$DDNS_PID_FILE" ] ; then
+    echo "nice -n 18 ionice -c3 ddns-go ${DDNS_GO_ARGS[@]} $@ > $DDNS_LOG_FILE"
+    nice -n 18 ionice -c3 ddns-go "${DDNS_GO_ARGS[@]}" "$@" > "$DDNS_LOG_FILE" 2>&1 &
+    echo $! > "$DDNS_PID_FILE"
+else
+    echo "ddns-go ${DDNS_GO_ARGS[@]} $@"
+    ddns-go "${DDNS_GO_ARGS[@]}" "$@"
+fi
