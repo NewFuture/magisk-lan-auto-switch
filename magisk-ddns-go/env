@@ -1,4 +1,5 @@
-DDNS_CONFIG_FILE_PATH="${MODPATH:-/data/adb/modules/ddns-go}/config.yaml"
-DDNS_IP_CACHE_TIMES=100
+DDNS_CONFIG_FILE_PATH="${DDNS_CONFIG_FILE_PATH:-/data/adb/modules/ddns-go/config.yaml}"
+DDNS_IP_CACHE_TIMES=${DDNS_IP_CACHE_TIMES:-100}
+DDNS_FREQUENCY=${DDNS_FREQUENCY:-600}
 DDNS_LOG_FILE=/data/log/ddns-go.log
 DDNS_PID_FILE=/data/log/ddns-go.pid
