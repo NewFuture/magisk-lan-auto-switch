@@ -1,6 +1,8 @@
 #!/system/bin/sh
 
 OLD_CONFIG_FILE="/data/adb/modules/ddns-go/config.yaml"
+OLD_ENV_FILE="/data/adb/modules/ddns-go/env"
+
 
 # get latest from https://github.com/jeessy2/ddns-go/releases/latest/
 DOWNLOAD_URL=$(curl -s https://api.github.com/repos/jeessy2/ddns-go/releases/latest | grep -o 'https:.*android_arm64.*tar.gz')
@@ -25,7 +27,10 @@ if [ -f "$OLD_CONFIG_FILE" ]; then
     echo "Found old config file at $OLD_CONFIG_FILE. Moving to new location."
     cp "$OLD_CONFIG_FILE" "$MODPATH"
     echo "COPY config file to $MODPATH"
-else
-    echo "No old config file found at $OLD_CONFIG_FILE."
-    touch "$MODPATH/config.yaml"
+fi
+
+if [ -f "$OLD_ENV_FILE" ]; then
+    echo "Found old config file at $OLD_ENV_FILE. Moving to new location."
+    cp "$OLD_ENV_FILE" "$MODPATH"
+    echo "COPY config file to $MODPATH"
 fi
